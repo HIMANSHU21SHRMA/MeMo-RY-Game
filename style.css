@@ -7,8 +7,69 @@ html , body{
     height: 100%;
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+
  
 }   
+
+
+.overlay {
+    height: 80%;
+    width: 60%;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    text-align: left;
+}
+
+.overlay h2 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.overlay ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.overlay ul li {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.overlay p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #666;
+}
+
+.hidden {
+    display: none;
+}
 nav{
     height: 8vh;
     width: 100%;
@@ -91,6 +152,7 @@ span{
     transition: all .6s ease;
     font-size: 1rem;
     color: #3f4243;
+    
 
 }
 
@@ -114,4 +176,83 @@ span{
     100% {
         box-shadow: 0 0 5px goldenrod;
     }
+}
+
+@media (max-width:800px) {
+  
+.overlay h2 {
+    font-size: 1rem;
+   
+}
+
+
+.overlay ul li {
+ 
+    font-size: 0.8rem;
+}
+
+.overlay p {
+    font-size: 0.8rem;
+}
+}
+@media (max-width:680px) {
+  
+.overlay h2 {
+    font-size: 0.9rem;
+   
+}
+
+
+.overlay ul li {
+ 
+    font-size: 0.7rem;
+}
+
+.overlay p {
+    font-size: 0.7rem;
+}
+}
+@media (max-width:550px) {
+    .overlay {
+        height: 80%;
+        width: 80%;
+    }
+     
+.overlay h2 {
+    font-size: 0.8rem;
+   
+}
+
+
+.overlay ul li {
+ 
+    font-size: 0.6rem;
+}
+
+.overlay p {
+    font-size: 0.6rem;
+}
+}
+
+@media (max-width:390px) {
+    .overlay {
+        height: 80%;
+        width: 80%;
+    }
+     
+.overlay h2 {
+    font-size: 0.8rem;
+   
+}
+
+
+.overlay ul li {
+ 
+    font-size: 0.6rem;
+}
+
+.overlay p {
+    font-size: 0.6rem;
+}
+
 }

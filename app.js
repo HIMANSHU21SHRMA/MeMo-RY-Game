@@ -1,6 +1,6 @@
 const gameDips = document.querySelector('.gameDisplay')
 const playerLife = document.querySelector('#count')
-let lifeCount = 7;
+let lifeCount = 5;
 playerLife.textContent = lifeCount;
 
 const getData = () => {
@@ -110,7 +110,17 @@ const restart = () => {
         },1000)
       
     });
-    lifeCount = 7;
+    lifeCount = 5;
     playerLife.textContent = lifeCount;
 }
+
 CardGenerate()
+
+// over lay / instruction menual!!
+
+let overlay = document.querySelector('.overlay')
+let closeBtn = document.querySelector('.close-btn')
+
+closeBtn.addEventListener('click', () => {
+    overlay.classList.add('hidden')
+})
