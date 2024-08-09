@@ -153,7 +153,7 @@ flex-direction: column;
     backface-visibility: hidden;
 }
 .life-count{
-    width: 60%;
+    width: 70%;
     height: 10vh;
     margin-top: 6vh;
     border-radius: 20px;
@@ -231,9 +231,35 @@ span{
 .overlay p {
     font-size: 0.8rem;
 }
+
+.life-count{
+    width: 88%;
+    
+}
+.life-count h2{
+    font-size: 1rem;
+
+}
+span{
+    font-size: 1rem;
+    
+}
+.life-count button{
+    height: 4.5vh;
+    width:10vw;
+    font-size: 1rem;
+
+}
 }
 @media (max-width:680px) {
-  
+    .gameDisplay{
+        display: grid;
+        grid-template-columns: repeat(4, 9vw);
+        grid-template-rows: repeat(4, 9vw);
+        gap: 4vh;
+       
+    
+    }
 .overlay h2 {
     font-size: 0.9rem;
    
@@ -248,8 +274,34 @@ span{
 .overlay p {
     font-size: 0.7rem;
 }
+
+.life-count{
+    width: 88%;
+    
+}
+.life-count h2{
+    font-size: 0.9rem;
+
+}
+span{
+    font-size: 0.9rem;
+    
+}
+.life-count button{
+    height: 4.5vh;
+    width:10vw;
+    font-size: 0.9rem;
+
+}
 }
 @media (max-width:550px) {
+    .gameDisplay{
+        display: grid;
+        grid-template-columns: repeat(4, 10vw);
+        grid-template-rows: repeat(4, 10vw);
+    
+    
+    }
     .overlay {
         height: 80%;
         width: 80%;
@@ -268,10 +320,36 @@ span{
 
 .overlay p {
     font-size: 0.6rem;
+}
+
+.life-count{
+    width: 88%;
+    
+}
+.life-count h2{
+    font-size: 0.8rem;
+
+}
+span{
+    font-size: 0.8rem;
+    
+}
+.life-count button{
+    height: 4.5vh;
+    width:10vw;
+    font-size: 0.8rem;
+
 }
 }
 
 @media (max-width:390px) {
+    .gameDisplay{
+        display: grid;
+        grid-template-columns: repeat(4, 11vw);
+        grid-template-rows: repeat(4, 11vw);
+        gap: 2vh;
+    
+    }
     .overlay {
         height: 80%;
         width: 80%;
@@ -291,5 +369,22 @@ span{
 .overlay p {
     font-size: 0.6rem;
 }
+.life-count{
+    width: 88%;
+    
+}
+.life-count h2{
+    font-size: 0.7rem;
 
+}
+span{
+    font-size: 0.7rem;
+    
+}
+.life-count button{
+    height: 4.5vh;
+    width:10vw;
+    font-size: 0.6rem;
+
+}
 }
