@@ -2,6 +2,14 @@ const gameDips = document.querySelector('.gameDisplay')
 const playerLife = document.querySelector('#count')
 let lifeCount = 5;
 playerLife.textContent = lifeCount;
+const msgBox = document.querySelector('.massages');
+const mgsTxt = document.querySelector('#textpic')
+const half = document.querySelector('#half')
+const show = document.querySelector('#show');
+const hint = document.querySelector('#hint')
+
+
+
 
 const getData = () => {
     return  [
@@ -27,7 +35,11 @@ const getData = () => {
 const randam = () => {
     const cardData = getData();
     cardData.sort( () => Math.random() - 0.5);  
+   
+    
     return cardData
+    
+    
 
 }
 
@@ -65,12 +77,14 @@ const CardGenerate = () => {
 const checkCard = (e) => {
     const clickedCard = e.target;
      clickedCard.classList.add('flipped');
-    let flippedCard = document.querySelectorAll('.flipped');
+     let toggleCard = document.querySelectorAll('.toggleCard')
+     let flippedCard = document.querySelectorAll('.flipped');     
      if(flippedCard.length === 2){
         if(flippedCard[0].getAttribute('name') === flippedCard[1].getAttribute('name')){
             flippedCard.forEach((card) => {
                 card.classList.remove('flipped')
                 card.style.pointerEvents = 'none'
+                
             })
             
         } else{
@@ -79,23 +93,108 @@ const checkCard = (e) => {
                 setTimeout(() => {
                     card.classList.remove('toggleCard')
 
-                },1800)
+                },1000)
               
             })
             lifeCount--;
             playerLife.textContent = lifeCount;
-
-     if (lifeCount === 0) {
-                restart();
+ // lose msg logic
+      if (lifeCount === 0) {
+        msgBox.classList.remove('msg-hidden')
+        mgsTxt.textContent = 'You Lose !'
+        setTimeout(() => {
+        msgBox.classList.add('msg-hidden')
+        restart()
+        },3000)
              }
-        }  
-     }
+            }
+
+            
+            // cheack for winner 
+            if (toggleCard.length === 16) {
+                    // console.log("you won");
+                    msgBox.classList.remove('msg-hidden')
+                    mgsTxt.textContent = 'You Wonn!'
+                    setTimeout(() => {
+                    msgBox.classList.add('msg-hidden')
+                          restart()
+                    },3000)
+                    
+            }
+     
+                       // life line
+
+
+
+// life line 50/50 
+// if (toggleCard.length == 3) {
+    
+//          half.classList.add('glow')
+//          console.log("hsadfhaifhiso");
+//         }   
+
+//  for show cards
+if (toggleCard.length >= 8) {
+    
+    show.classList.add('glow')
+    let card = document.querySelectorAll('.card')
+    show.addEventListener('click', () => {
+        card.forEach((item) => {
+            item.classList.add('toggleCard')
+            setTimeout(() => {
+            item.classList.remove('toggleCard')
+
+            },1100)
+        })
+    })
+
+}
+if (toggleCard.length >= 10) {
+    hint.classList.add('glow');
+
+    const card = document.querySelectorAll('.card');
+    const pickedCard = cardPicker();
+
+    let matchedCards = [];
+
+    card.forEach((item) => {
+        if (pickedCard.getAttribute('name') === item.getAttribute('name')) {
+            matchedCards.push(item);
+        }
+    });
+
+    hint.addEventListener('click', () => {
+        if (matchedCards.length === 2) {
+            matchedCards.forEach((card) => {
+                card.classList.add('glow');
+                setTimeout(() => {
+                card.classList.remove('glow');
+
+                },5000)
+            });
+        }
+    });
+}}
+
+}
+
+// card picker
+const cardPicker = () => {
+    const allCards = Array.from(document.querySelectorAll('.card'));
+    let pickedCard;
+
+    // Ensure that pickedCard is a valid DOM element and not already toggled
+    do {
+        pickedCard = allCards[Math.floor(Math.random() * allCards.length)];
+    } while (!pickedCard || pickedCard.classList.contains('toggleCard'));
+
+    return pickedCard;
 }
 
 //  restart the game
 const restart = () => {
     let cardData = randam();
-    let face = document.querySelectorAll('.face')
+    let faces = document.querySelectorAll('.face')
     let cards = document.querySelectorAll('.card')
     gameDips.style.pointerEvents = "none"
     cardData.forEach((item, index) => {
@@ -105,13 +204,14 @@ const restart = () => {
             cards[index].style.pointerEvents = 'all'
             faces[index].src = item.imgSrc;
             cards[index].setAttribute('name', item.name);
-    gameDips.style.pointerEvents = "all"
+            gameDips.style.pointerEvents = "all"
 
         },1000)
       
     });
     lifeCount = 5;
     playerLife.textContent = lifeCount;
+
 }
 
 CardGenerate()
