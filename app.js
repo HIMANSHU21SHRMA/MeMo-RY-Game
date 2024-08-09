@@ -9,8 +9,6 @@ const show = document.querySelector('#show');
 const hint = document.querySelector('#hint')
 
 
-
-
 const getData = () => {
     return  [
         {imgSrc: "img/buldings.jpg", name: "bulding"},
@@ -135,23 +133,99 @@ const checkCard = (e) => {
 
 //  for show cards
 if (toggleCard.length >= 8) {
-    
-    show.classList.add('glow')
-    let card = document.querySelectorAll('.card')
-    show.addEventListener('click', () => {
-        card.forEach((item) => {
-            item.classList.add('toggleCard')
-            setTimeout(() => {
-            item.classList.remove('toggleCard')
+    show.disabled = false;
 
-            },1100)
-        })
-    })
+    show.classList.remove('btn-color')
+
+    show.classList.add('glow');
+    let cards = document.querySelectorAll('.card');
+
+    show.addEventListener('click', () => {
+        show.disabled = true;
+        cards.forEach((card) => {
+            if (!card.classList.contains('toggleCard')) {
+                // Temporarily add the 'toggleCard' class to reveal the card
+                card.classList.add('toggleCard');
+
+                setTimeout(() => {
+                    // Remove the 'toggleCard' class only if it wasn't there originally
+                    card.classList.remove('toggleCard');
+                    show.classList.remove('glow');
+                show.classList.add('btn-color')
+                show.removeEventListener('click',() => {
+                    
+                })
+                    
+                }, 1100);
+            }
+        });
+    });
+
+    }
+ 
 
 }
-if (toggleCard.length >= 10) {
-    hint.classList.add('glow');
+               
+if (toggleCard.length >= 6) {
+    half.classList.remove('btn-color')
+    half.disabled = false;
+    half.classList.add('glow');
 
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const toggledCards = Array.from(document.querySelectorAll('.toggleCard'));
+
+    // Function to pick a random card from the list
+    const pickRandomCard = (excludedCards) => {
+        const availableCards = cards.filter(card => !excludedCards.includes(card));
+        return availableCards[Math.floor(Math.random() * availableCards.length)];
+    }
+
+    // Pick a card to be duplicated
+    const pickedCard = pickRandomCard(toggledCards);
+    const pickedName = pickedCard.getAttribute('name');
+    
+    // Find a matching card
+    let matchedCards = [pickedCard];
+    cards.forEach((card) => {
+        if (card.getAttribute('name') === pickedName && card !== pickedCard && !toggledCards.includes(card)) {
+            matchedCards.push(card);
+        }
+    });
+
+    // Pick a third card that is different and not toggled
+    let differentCard = pickRandomCard(toggledCards.concat(matchedCards));
+    while (differentCard.getAttribute('name') === pickedName) {
+        differentCard = pickRandomCard(toggledCards.concat(matchedCards));
+    }
+    matchedCards.push(differentCard);
+
+    // Add event listener to highlight matched cards
+
+        half.addEventListener('click', () => {
+            half.disabled = true
+            if (matchedCards.length === 3) {
+                matchedCards.forEach((card) => {
+                    card.classList.add('glow');
+                    setTimeout(() => {
+                    half.classList.remove('glow');
+                    half.classList.add('btn-color')
+                        
+                        card.classList.remove('glow');
+                    }, 5000);
+                });
+            }
+        });
+    
+  
+}
+
+
+if (toggleCard.length >= 10) {
+    hint.classList.remove('btn-color')
+
+    hint.classList.add('glow');
+    
+    hint.disabled = false;
     const card = document.querySelectorAll('.card');
     const pickedCard = cardPicker();
 
@@ -164,19 +238,25 @@ if (toggleCard.length >= 10) {
     });
 
     hint.addEventListener('click', () => {
+            hint.disabled = true
+
         if (matchedCards.length === 2) {
             matchedCards.forEach((card) => {
                 card.classList.add('glow');
                 setTimeout(() => {
                 card.classList.remove('glow');
-
+                hint.classList.remove('glow');
+                hint.classList.add('btn-color')
+                
                 },5000)
             });
         }
     });
+
+   
 }}
 
-}
+
 
 // card picker
 const cardPicker = () => {
@@ -196,6 +276,7 @@ const restart = () => {
     let cardData = randam();
     let faces = document.querySelectorAll('.face')
     let cards = document.querySelectorAll('.card')
+   
     gameDips.style.pointerEvents = "none"
     cardData.forEach((item, index) => {
         
