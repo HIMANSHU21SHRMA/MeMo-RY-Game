@@ -7,6 +7,7 @@ const mgsTxt = document.querySelector('#textpic')
 const half = document.querySelector('#half')
 const show = document.querySelector('#show');
 const hint = document.querySelector('#hint')
+const toggleCard = document.querySelectorAll('.toggleCard')
 
 
 const getData = () => {
@@ -75,7 +76,6 @@ const CardGenerate = () => {
 const checkCard = (e) => {
     const clickedCard = e.target;
      clickedCard.classList.add('flipped');
-     let toggleCard = document.querySelectorAll('.toggleCard')
      let flippedCard = document.querySelectorAll('.flipped');     
      if(flippedCard.length === 2){
         if(flippedCard[0].getAttribute('name') === flippedCard[1].getAttribute('name')){
