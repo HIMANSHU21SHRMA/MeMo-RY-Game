@@ -133,7 +133,6 @@ const checkCard = (e) => {
 
 //  for show cards
 if (toggleCard.length >= 8) {
-    show.disabled = false;
 
     show.classList.remove('btn-color')
 
@@ -168,7 +167,7 @@ if (toggleCard.length >= 8) {
                
 if (toggleCard.length >= 6) {
     half.classList.remove('btn-color')
-    half.disabled = false;
+ 
     half.classList.add('glow');
 
     const cards = Array.from(document.querySelectorAll('.card'));
@@ -225,7 +224,6 @@ if (toggleCard.length >= 10) {
 
     hint.classList.add('glow');
     
-    hint.disabled = false;
     const card = document.querySelectorAll('.card');
     const pickedCard = cardPicker();
 
@@ -276,7 +274,18 @@ const restart = () => {
     let cardData = randam();
     let faces = document.querySelectorAll('.face')
     let cards = document.querySelectorAll('.card')
-   
+   if (toggleCard.length >= 6) {
+    half.disabled = false;
+
+   }
+   if (toggleCard.length >= 10) {
+    hint.disabled = false;
+
+   }
+   if (toggleCard.length >= 8) {
+    show.disabled = false;
+
+   }
     gameDips.style.pointerEvents = "none"
     cardData.forEach((item, index) => {
         
