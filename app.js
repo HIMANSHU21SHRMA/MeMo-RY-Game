@@ -273,6 +273,7 @@ const cardPicker = () => {
 const restart = () => {
     let cardData = randam();
     let faces = document.querySelectorAll('.face')
+    let toggleCard = document.querySelectorAll('.toggleCard')
     let cards = document.querySelectorAll('.card')
    if (toggleCard.length >= 6) {
     half.disabled = false;
